@@ -5,10 +5,13 @@ from netaddr import IPNetwork
 import sys
 
 if len(sys.argv) < 2:
-	print ('example usage: python3 cidrExpand.py cidrRanges.txt >> output.txt')
+	print ('example usage: python3 cidrExpand.py cidrRanges.txt > output.txt')
 
-with open(sys.argv[1], 'r') as cidrRanges:
-	for line in cidrRanges:
-		ip = IPNetwork(line)
-		for ip in ip:
-			print (ip)
+try:
+	with open(sys.argv[1], 'r') as cidrRanges:
+        	for line in cidrRanges:
+                	ip = IPNetwork(line)
+                	for ip in ip:
+                        	print (ip)
+except IndexError as e:
+	print('File not provided')
